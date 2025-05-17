@@ -4,6 +4,7 @@ import { AiOutlineExclamationCircle } from "react-icons/ai";
 import { TbLoader } from "react-icons/tb";
 import InputField from "../utils/InputField";
 import OtpInputForm from "../utils/OtpInputForm";
+
 import {
   SESSION_STORAGE_SHARELINKS_KEY,
   LOCAL_STORAGE_TOKEN_KEY,
@@ -239,8 +240,14 @@ const Register = () => {
         setError(data.msg);
       }
     } catch (err) {
-      setError("Error deleting the account, please try again.");
-    } finally {
+      try {
+        const errorData = await err.response.json();
+        setOtpError(errorData.msg || "OTP verification failed.");
+      } catch {
+        setOtpError(err.message || "OTP verification failed.");
+      }
+    }
+      finally {
       setWrongEmailLoading(false);
     }
   };
@@ -273,12 +280,11 @@ const Register = () => {
             <div className="flex items-center">
               <AiOutlineExclamationCircle className="mr-2 text-xl" />
               <p className="text-sm text-justify flex-1">
-                Please check your email for the OTP. If you don't see it, be
+                Please check your email for the OTP. If you don&#39;t see it, be
                 sure to check your{" "}
                 <span className="font-bold">spam folder</span>.{" "}
                 <span className="italic">
-                  If the OTP doesn't appear in your inbox, try using a different
-                  email address.
+                  If the OTP doesn&#39;t appear in your inbox, try using a different email address.
                 </span>
               </p>
             </div>

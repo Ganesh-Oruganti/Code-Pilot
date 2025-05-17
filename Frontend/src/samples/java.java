@@ -38,7 +38,7 @@ public class ArrayOperations {
 
         reverseArray(arr);
 
-        System.out.print("Reversed ");
+        System.out.print("Reversed ");z
         printArray(arr);
 
         int sum = 0;

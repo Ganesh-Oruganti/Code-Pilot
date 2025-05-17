@@ -299,7 +299,7 @@ async function checkAndConnectDB() {
 	if (mongoose.connection.readyState === 0) {
 		try {
 			await mongoose
-				.connect(MONGO_URI)
+				.connect(process.env.MONGO_URI)
 				.then(() => console.log('MongoDB connected'))
 				.catch((err) => console.log('Error connecting to MongoDB:', err));
 			console.log('MongoDB connected');
@@ -502,9 +502,7 @@ app.post('/api/register', cleanExpired, async (req, res) => {
 
 		await sendOtpEmail(email, otp);
 
-		res.status(200).json({
-			msg: 'Registration successful, please check your email for the OTP to verify your email address.',
-		});
+		res.status(201).json({ message: "User registered successfully" });
 	} catch (err) {
 		console.error(err);
 		res.status(500).json({
@@ -1547,3 +1545,4 @@ app.delete('/api/user/sharedLink/:shareId', async (req, res) => {
 });
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+console.log('Mongo URI:',MONGO_URI);

@@ -1,7 +1,7 @@
 import os
 import re
 import jwt
-from google import genai
+from google import generativeai
 from dotenv import load_dotenv
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS

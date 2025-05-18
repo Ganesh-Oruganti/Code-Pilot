@@ -2,7 +2,7 @@ An Online IDE with login functionality enables users to run code, generate new c
 
 ![Homepage](Images/Homepage.png)
 
-![Lines of code](https://sloc.xyz/github/gladw-in/online-ide)
+![Lines of code]
 
 ## Structure of a `.env` File
 
